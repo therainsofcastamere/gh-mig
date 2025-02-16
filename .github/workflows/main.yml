@@ -56,6 +56,8 @@ jobs:
                 echo "github.workflow_sha ${{ github.workflow_sha }}"
                 echo "github.workspace ${{ github.workspace }}"
                 echo "github ${{ github }}"
+                echo "Contents of workflow event.json"
+                cat /home/runner/work/_temp/_github_workflow/event.json
               shell: bash
             
             - name: Checkout
