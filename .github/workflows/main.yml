@@ -16,17 +16,30 @@ jobs:
         steps:
             - run: tree
 
+            - name: Get tags
+              run: |
+                for tag in $(git log --format=%H ${{ github.ref_name }} | \
+                xargs -n1 \
+                git describe --tags --exact-match 2>/dev/null); \
+                do \
+                    echo "$tag"
+                done
+
             - name: GitHub Script
               uses: actions/github-script@v7.0.1
               with:
                 script: |
-                  console.log(context)
-
+                  octokit.paginate("GET /repos/{owner}/{repo}/tags", {
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                  }).then((issues) => {
+                    issues.forEach(i => console.log(issue))
+                  })
 
             - name: Create Release
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                tag: 9.10.1.2.DEV
+                tag: 9.10.1.3.DEV
               run: |
                 gh release create "$tag" \
                   --repo="$GITHUB_REPOSITORY" \
