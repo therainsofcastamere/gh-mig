@@ -16,6 +16,8 @@ jobs:
         steps:
             - run: tree
 
+            - uses: actions/checkout@v4
+
             - name: Get tags
               run: |
                 for tag in $(git log --format=%H ${{ github.ref_name }} | \
