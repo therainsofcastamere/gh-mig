@@ -20,10 +20,7 @@ jobs:
 
             - name: Get tags
               run: |
-                for tag in $(git log --format=%H ${{ github.ref_name }} | xargs -n1 git describe --tags --exact-match 2>/dev/null);
-                do
-                  echo "$tag"
-                done
+                for tag in $(git log --format=%H ${{ github.ref_name }} | xargs -n1 git describe --tags --exact-match 2>/dev/null); do echo "$tag" done
 
             - name: GitHub Script
               uses: actions/github-script@v7.0.1
