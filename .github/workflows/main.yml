@@ -65,4 +65,12 @@ jobs:
 
             - run: tree
 
-            - uses: devops-actions/actionlint@v0.1.2
+            - name: Create Release
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                tag: 9.10.1.1.DEV
+              run: |
+                gh release create "$tag" \
+                  --repo="$GITHUB_REPOSITORY" \
+                  --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+                  --generate-notes
