@@ -30,7 +30,7 @@ jobs:
                 echo "github.event_name ${{ github.event_name }}"
                 echo "github.event_path ${{ github.event_path }}"
                 echo "github.graphql_url ${{ github.graphql_url }}"
-                echo "github.head_ref ${{ github.head_ref }}"
+                # echo "github.head_ref ${{ github.head_ref }}"
                 echo "github.job ${{ github.job }}"
                 echo "github.job_workflow_sha ${{ github.job_workflow_sha }}"
                 echo "github.path ${{ github.path }}"
